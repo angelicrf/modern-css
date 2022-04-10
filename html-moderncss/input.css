@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    background-image: url('../images/bg-tablet-pattern.svg');
+    background-repeat: no-repeat;
+    background-size: 740px;
+    background-position: 50% -25%;
+}
+@media(max-width: 520px) {
+    body{
+        background-position: 50% -55%;
+        background-size: 520px;
+    }
+}
+.hamburger{
+    position: relative;
+    width: 20%;
+    height: 20%;
+    transition: all 0.20s;
+    cursor: pointer;
+}
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom{
+    position: absolute;
+    width: 20%;
+    height: 5px;
+    background: rgb(26, 21, 21);
+    right: 0;
+    transform: rotate(0);
+    transition: all 0.3s;
+}
+.hamburger-middle{
+    transform: translateY(7px);
+ }
+ .hamburger-bottom{
+     transform: translateY(14px);
+ }
+ .openHamburger{
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+.openHamburger .hamburger-middle{
+    display: none;
+}
+.openHamburger .hamburger-top{
+    position: absolute;
+    transform: rotate(45deg) translateY(4px) translate(4px);
+}
+.openHamburger .hamburger-bottom{
+    position: absolute;
+    transform: rotate(-45deg) translateY(4px) translate(-4px);
+}
