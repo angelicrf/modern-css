@@ -1,5 +1,3 @@
-import axios from "axios";
-import "regenerator-runtime/runtime";
 import {
   addAccountData,
   deleteAccountData,
@@ -8,11 +6,11 @@ import {
 } from "./storeData.js";
 
 const MAIN_URL = "https://jsonplaceholder.typicode.com";
-
+let   storeId = 0;
 export const getFormInfo = () => {
   let getBtnId = document.querySelector("#formBtn");
 
-  getBtnId.addEventListener("submit", async (event) => {
+  getBtnId.addEventListener("submit", async(event) => {
     event.preventDefault();
     let getInputValue = document.querySelector("#inputText").value;
 
@@ -21,38 +19,41 @@ export const getFormInfo = () => {
       accountName: getInputValue,
       hasValue: true,
     };
-    let showReceived = await postItems(newItem);
-
-    if (
-      showReceived !== undefined &&
-      (userAccountInfoLenght() !== 2 || !userAccountInfoLenght() > 2)
+ 
+    if ((userAccountInfoLenght() !== 2 || !userAccountInfoLenght() > 2)
     ) {
-      addAccountData(showReceived);
+      let showData = await postItems(newItem);
+      addAccountData(showData)
+      storeId = showData.id
       //let showGet = await getItems()
       //localStorage.setItem("allUsers",JSON.stringify(showReceived))
     }
     if (userAccountInfoLenght() == 2 || userAccountInfoLenght() > 2) {
-      let dlData = deleteAccountData(showReceived.id);
-      console.log("deletedData " + JSON.stringify(dlData));
+      let dlData = deleteAccountData(storeId);
       userAccountInfoLenght();
-    }
+    } 
   });
 };
 
-const postItems = async (thisItem) => {
-  try {
-    let thisResponse = await axios.post(`${MAIN_URL}/todos`, thisItem);
-    let receivedRes = thisResponse.data;
-    return receivedRes;
-  } catch (error) {
-    console.log(error);
+const postItems = async(thisItem) => { 
+   let postData = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+          thisItem
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+   let jsonData = await postData.json()
+   return jsonData   
   }
-};
+
 const getItems = async () => {
   //example
   try {
-    let thisResponse = await axios.get(`${MAIN_URL}/todos?id=201`);
-    let receivedRes = thisResponse.data;
+    let thisResponse = await fetch(`${MAIN_URL}/todos?id=20`);
+    let receivedRes = await thisResponse.json();
     return receivedRes;
   } catch (error) {
     console.log(error);

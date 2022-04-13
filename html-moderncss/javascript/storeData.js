@@ -60,7 +60,6 @@ export const userAccountInfoLenght = () => {
 };
 export const displayUserAccount = () => {
   return userData.map((acData) => {
-    console.log("displayUserAccount" + JSON.stringify(acData.userAccountInfo));
     return acData.userAccountInfo;
   });
 };
@@ -77,7 +76,7 @@ export const runData = () => {
 export const addAccountData = (newAccount) => {
   return userData.map((data) => {
     data.userAccountInfo.push(newAccount);
-    console.log("userAccountData " + JSON.stringify(data.userAccountInfo));
+    //console.log("userAccountData " + JSON.stringify(data.userAccountInfo));
     return data.userAccountInfo;
   });
 };

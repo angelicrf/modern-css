@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "parcel-bundler": "^1.12.5",
     "tailwindcss": "^3.0.23"
   },
   "name": "html-moderncss",
@@ -14,7 +13,6 @@
     "anymatch": "^3.1.2",
     "arg": "^5.0.1",
     "autoprefixer": "^10.4.4",
-    "axios": "^0.26.1",
     "binary-extensions": "^2.2.0",
     "braces": "^3.0.2",
     "browserslist": "^4.20.2",
@@ -90,8 +88,7 @@
     "yaml": "^1.10.2"
   },
   "scripts": {
-    "start": "tailwindcss -i ./input.css -o ./dist/input.css --watch",
-    "dev": "parcel index.html"
+    "start": "tailwindcss -i ./input.css -o ./dist/input.css --watch"
   },
   "keywords": [],
   "author": "Angelique RF",
