@@ -56,6 +56,7 @@ const showComments = () => {
     });
   }
 };
+
 toggleMenu();
 displayData();
 showComments();

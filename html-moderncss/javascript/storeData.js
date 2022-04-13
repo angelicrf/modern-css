@@ -76,7 +76,7 @@ export const runData = () => {
 export const addAccountData = (newAccount) => {
   return userData.map((data) => {
     data.userAccountInfo.push(newAccount);
-    //console.log("userAccountData " + JSON.stringify(data.userAccountInfo));
+    console.log("userAccountData " + JSON.stringify(data.userAccountInfo));
     return data.userAccountInfo;
   });
 };
